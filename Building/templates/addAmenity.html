@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Amenity</title>
+</head>
+<body>
+    <h1>Add Amenity</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="amenity_name">Amenity Name:</label><br>
+        <input type="text" id="amenity_name" name="amenity_name" required><br>
+
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" required></textarea><br>
+
+        <label for="status">Status:</label><br>
+        <input type="text" id="status" name="status" required><br>
+
+        <label for="location">Location:</label><br>
+        <input type="text" id="location" name="location" required><br>
+
+        <label for="capacity">Capacity:</label><br>
+        <input type="number" id="capacity" name="capacity" required><br>
+
+        <label for="opening_hrs">Opening Hours:</label><br>
+        <input type="text" id="opening_hrs" name="opening_hrs" required><br>
+
+        <label for="reservation_fees">Reservation Fees:</label><br>
+        <input type="number" id="reservation_fees" name="reservation_fees" step="0.01" required><br>
+
+        <label for="maintenance">Maintenance:</label><br>
+        <textarea id="maintenance" name="maintenance" required></textarea><br>
+
+        <label for="availability">Availability:</label><br>
+        <input type="checkbox" id="availability" name="availability" checked><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
