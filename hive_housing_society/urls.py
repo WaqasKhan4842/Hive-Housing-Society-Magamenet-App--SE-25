@@ -21,12 +21,16 @@ from Account.views import *
 from vege.views import *
 from Resident.views import *
 from Building.views import *
+from Admin.views import *
 
 urlpatterns = [
-    path('',Add_Amenity,name="Add_Amenity"),
+    path('',Admin_Dashboard,name="Admin_Dashboard"),
+    #path('',add_society,name="add_society"),
+    #path('',Add_Amenity,name="Add_Amenity"),
    # path('',Login,name="Login"),
-   # path ('Resident_Dashboard/',Resident_Dasboard,name="Resident_Dasboard"),
-    #path('account/', account_view, name='account_view'),
+    path('registerresident/', register_resident, name='register_resident'),
+   #path ('Resident_Dashboard/',Resident_Dasboard,name="Resident_Dasboard"),
+    path('account/', account_view, name='account_view'),
     #path ('',recipes,name="recipes"),
    
     #path('',home,name="home"),

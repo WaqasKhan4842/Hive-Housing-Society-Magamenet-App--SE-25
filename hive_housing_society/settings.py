@@ -37,14 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Building'
+    'Building',
+    'Account',
    
 ]
 EXTERNAL_APPS =[
     'Home',
-    'Account',
     'vege',
     'Resident',
+    'Admin'
 
 
 ]
