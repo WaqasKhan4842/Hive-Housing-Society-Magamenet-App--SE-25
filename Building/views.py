@@ -1,5 +1,7 @@
-from django.shortcuts import render
-from .models  import Amenities
+from django.shortcuts import render,redirect
+from .models  import *
+from .forms import SocietyForm
+
 # Create your views here.
 def Add_Amenity(request):
     if request.method == "POST":
@@ -38,4 +40,19 @@ def Add_Amenity(request):
         new_amenity.save()
 
     return render(request,"addAmenity.html")
+
+
+
+
+def add_society(request):
+    if request.method == 'POST':
+        form = SocietyForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('Resident_Dashboard/')  # Redirect to a success page
+    else:
+        form = SocietyForm()
+    return render(request, 'add_society.html', {'form': form})
+
+
   
