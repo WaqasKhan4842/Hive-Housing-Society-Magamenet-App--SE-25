@@ -1,0 +1,44 @@
+<!-- pay_dues.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay Dues</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Pay Dues</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="payment_method">Payment Method:</label>
+                <select class="form-control" id="payment_method" name="payment_method" required>
+                    <option value="credit_card">Credit Card</option>
+                    <option value="debit_card">Debit Card</option>
+                    <option value="bank_transfer">Bank Transfer</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="card_number">Card Number:</label>
+                <input type="text" class="form-control" id="card_number" name="card_number" required>
+            </div>
+            <div class="form-group">
+                <label for="expiry_date">Expiry Date:</label>
+                <input type="text" class="form-control" id="expiry_date" name="expiry_date" placeholder="MM/YY" required>
+            </div>
+            <div class="form-group">
+                <label for="cvv">CVV:</label>
+                <input type="text" class="form-control" id="cvv" name="cvv" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Pay Now</button>
+        </form>
+    </div>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

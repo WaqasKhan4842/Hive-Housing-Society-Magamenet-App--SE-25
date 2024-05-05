@@ -1,0 +1,99 @@
+<!-- society_owner_registration.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css" >
+    <link href="{% static 'css/society-owner-registration-styles.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/color.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/font.css' %}" type="text/css" rel="stylesheet">
+    <title>Society Owner Registration</title>
+</head>
+
+<body>
+    <div class="outer-container container border pt-2 px-5 pb-4">
+        <center>
+            <h2 class="mb-4">Society Owner Registration</h2>
+        </center>
+        <div class="mt-5">
+        <!-- Display error message if it exists -->
+        {% if error_message %}
+        <div class="alert alert-danger" role="alert">
+            {{ error_message }}
+        </div>
+        {% endif %}
+        <form method="post" action="{% url 'reg_step1' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="user_name" class="form-label">Username:</label>
+                <input type="text" class="form-control" id="user_name" name="user_name">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="first_name" class="form-label">First Name:</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name">
+                </div>
+                <div class="col">
+                    <label for="last_name" class="form-label">Last Name:</label>
+                    <input type="text" class="form-control" id="last_name" name="last_name">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="phone_number" class="form-label">Phone Number (Pakistani Format):</label>
+                <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="e.g., 03XX-XXXXXXX">
+                <small id="phone_help" class="form-text text-muted">Please enter your phone number in the format 03XX-XXXXXXX.</small>
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">Address:</label>
+                <textarea class="form-control" id="address" name="address"></textarea>
+            </div>
+            <!-- Add CNIC (Computerized National Identity Card) field -->
+            <div class="mb-3">
+                <label for="cnic" class="form-label">CNIC:</label>
+                <input type="text" class="form-control" id="cnic" name="cnic" placeholder="Enter 13-digit CNIC">
+                <small id="cnic_help" class="form-text text-muted">Please enter your 13-digit CNIC number.</small>
+            </div>
+            <center>
+                <input class="btn btn-primary" type="submit" value="Next">
+            </center>
+        </form>
+    </div>
+    </div>
+
+    <script>
+        // Function to format phone number as Pakistani format (03XX-XXXXXXX)
+        function formatPhoneNumber() {
+            var input = document.getElementById("phone_number");
+            var value = input.value.replace(/\D/g, '');
+            var formattedValue = value.replace(/^(\d{3})(\d{7})$/, "$1-$2");
+            input.value = formattedValue;
+        }
+
+        // Add event listener to format phone number as the user types
+        document.getElementById("phone_number").addEventListener("input", formatPhoneNumber);
+
+
+        // Function to validate CNIC length
+        function validateCNIC() {
+            var input = document.getElementById("cnic");
+            if (input.value.length !== 13) {
+                input.setCustomValidity("Please enter a 13-digit CNIC number.");
+            } else {
+                input.setCustomValidity("");
+            }
+        }
+
+        // Add event listener to validate CNIC length on input change
+        document.getElementById("cnic").addEventListener("input", validateCNIC);
+    </script>
+</body>
+
+</html>

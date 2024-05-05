@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit a Complaint</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        select, textarea, input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        button[type="submit"] {
+            background-color: #ff3333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #cc0000;
+        }
+
+        .dashboard-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .dashboard-link:hover {
+            background-color: #45a049;
+        }
+
+        .success-message {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Submit a Complaint</h1>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="success-message">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    
+    <form action="{% url 'lodge_complaint' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="complaint_type">Complaint Type:</label><br>
+        <select name="complaint_type" id="complaint_type" required>
+            <option value="" disabled selected>Select a Complaint Type</option>
+            <option value="General">General</option>
+            <option value="Maintenance">Maintenance</option>
+            <option value="Noise">Noise</option>
+            <option value="Security">Security</option>
+            <option value="Other">Other</option>
+        </select><br>
+
+        <label for="description">Description (max 150 characters):</label><br>
+        <textarea name="description" id="description" rows="4" maxlength="150" required></textarea><br>
+
+        <label for="image">Upload Image (optional):</label><br>
+        <input type="file" name="image" id="image"><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Resident Dashboard Link -->
+    <a href="{% url 'resident_dashboard' %}" class="dashboard-link">Go to Resident Dashboard</a>
+</body>
+</html>

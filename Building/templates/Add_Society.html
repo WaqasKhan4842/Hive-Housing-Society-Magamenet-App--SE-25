@@ -1,54 +1,102 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="{% static 'css/bootstrap.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/color.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/font.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/Add_Society-styles.css' %}" type="text/css" rel="stylesheet">
+ 
     <title>Create Society</title>
 </head>
+
 <body>
-    <h1>Create Society</h1>
-    <form method="post">
-        {% csrf_token %}
-        <label for="society_name">Society Name:</label><br>
-        <input type="text" id="society_name" name="society_name" required><br><br>
+    <div class="outer-container container border pt-2 px-5 pb-4">
 
-        <label for="street_address">Street Address:</label><br>
-        <input type="text" id="street_address" name="street_address" required><br><br>
+        <div class="">
+            <center class="">
+                <h2>Create Society</h2>
+            </center>
+            <div class="mt-5">
+                <form method="post" action="{% url 'reg_step2' %}">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="society_name">Society Name:</label>
+                            <input class="form-control" type="text" id="society_name" name="society_name" required
+                                style="width: 100%;">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-4">
+                            <label for="street_address">Street Address:</label>
+                            <input class="form-control" type="text" id="street_address" name="street_address" required
+                                style="width: 100%;">
+                        </div>
+                        <div class="col-4">
+                            <label for="city">City:</label>
+                            <input class="form-control" type="text" id="city" name="city" required style="width: 100%;">
+                        </div>
+                        <div class="col-4">
+                            <label for="province">Province:</label>
+                            <input class="form-control" type="text" id="province" name="province" required
+                                style="width: 100%;">
+                        </div>
+                    </div>
 
-        <label for="city">City:</label><br>
-        <input type="text" id="city" name="city" required><br><br>
-
-        <label for="province">Province:</label><br>
-        <input type="text" id="province" name="province" required><br><br>
-
-        <label for="postal_code">Postal Code:</label><br>
-        <input type="text" id="postal_code" name="postal_code" required><br><br>
-
-        <label for="total_apartments">Total Apartments:</label><br>
-        <input type="number" id="total_apartments" name="total_apartments" required><br><br>
-
-        <label for="owner_name">Owner Name:</label><br>
-        <input type="text" id="owner_name" name="owner_name" required><br><br>
-
-        <label for="contact_info">Contact Info:</label><br>
-        <input type="text" id="contact_info" name="contact_info" required><br><br>
-
-        <label for="number_of_floors">Number of Floors:</label><br>
-        <input type="number" id="number_of_floors" name="number_of_floors" required><br><br>
-
-        <label for="number_of_blocks">Number of Blocks:</label><br>
-        <input type="number" id="number_of_blocks" name="number_of_blocks" required><br><br>
-
-        <label for="start_block">Start Block:</label><br>
-        <input type="text" id="start_block" name="start_block" required><br><br>
-
-        <label for="end_block">End Block:</label><br>
-        <input type="text" id="end_block" name="end_block" required><br><br>
-
-        <label for="number_of_blocks_each_floor">Number of Apartments Each Floor:</label><br>
-        <input type="number" id="number_of_apartments_each_floor" name="number_of_apartments_each_floor" required><br><br>
-
-        <input type="submit" value="Submit">
-    </form>
+                    <div class="row mt-3">
+                        <div class="col-4">
+                            <label for="postal_code">Postal Code:</label>
+                            <input class="form-control" type="text" id="postal_code" name="postal_code" required
+                                style="width: 100%;">
+                        </div>
+                        <div class="col-4">
+                            <label for="total_apartments">Total Apartments:</label>
+                            <input class="form-control" type="number" id="total_apartments" name="total_apartments"
+                                required style="width: 100%;">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-4">
+                            <label for="contact_info">Contact Info:</label>
+                            <input class="form-control" type="text" id="contact_info" name="contact_info" required
+                                style="width: 100%;">
+                        </div>
+                        <div class="col-4">
+                            <label for="number_of_floors">Number of Floors:</label>
+                            <input class="form-control" type="number" id="number_of_floors" name="number_of_floors"
+                                required style="width: 100%;">
+                        </div>
+                        <div class="col-4">
+                            <label for="number_of_blocks">Number of Blocks:</label>
+                            <input class="form-control" type="number" id="number_of_blocks" name="number_of_blocks"
+                                required style="width: 100%;">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-4">
+                            <label for="start_block">Start Block:</label>
+                            <input class="form-control" type="text" id="start_block" name="start_block" required
+                                style="width: 100%;">
+                        </div>
+                        <div class="col-4">
+                            <label for="end_block">End Block:</label>
+                            <input class="form-control" type="text" id="end_block" name="end_block" required
+                                style="width: 100%;">
+                        </div>
+                    </div>
+                    <center class="mt-5">
+                        <input class="" type="submit" value="Submit">
+                    </center>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

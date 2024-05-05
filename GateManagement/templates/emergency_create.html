@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css" >
+    <link href="{% static 'css/emergency_create-styles.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/color.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/font.css' %}" type="text/css" rel="stylesheet">
+    <title>Add Emergency Information</title>
+    <style>
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="#000000" width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
+            background-repeat: no-repeat;
+            background-position-x: calc(100% - 10px);
+            background-position-y: center;
+        }
+
+        .phone-input {
+            position: relative;
+        }
+
+        .phone-input input[type="text"] {
+            padding-left: 40px;
+        }
+
+        .phone-flag {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            width: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer-container container border pt-2 px-5 pb-4">
+        <center>
+            <h2>Add Emergency Information</h2>
+        </center>
+        <form method="post" action="{% url 'add_emergency_information' %}">
+            {% csrf_token %}
+            <label for="id_type">Type:</label>
+            <select name="type" class="form-control" id="id_type" style="background-color: var(--background);" <option
+                value="Medical">Medical</option>
+                <option value="Fire">Fire</option>
+                <option value="Police">Police</option>
+                <option value="Natural Disaster">Natural Disaster</option>
+                <option value="Accident">Accident</option>
+                <option value="Gas Leak">Gas Leak</option>
+                <option value="Security Threat">Security Threat</option>
+                <option value="Power Outage">Power Outage</option>
+                <option value="Water Leak">Water Leak</option>
+                <option value="Suspicious Activity">Suspicious Activity</option>
+            </select>
+
+            <label for="id_contact">Contact:</label>
+            <div class="phone-input">
+                <input type="text" id="id_contact" class="form-control" name="contact"
+                    placeholder="e.g., +92 3XX XXXXXXX" />
+            </div>
+
+            <label for="id_email">Email:</label>
+            <input type="email" id="id_email" class="form-control" name="email" />
+
+            <label for="id_contact_person_name">Contact Person Name:</label>
+            <input type="text" id="id_contact_person_name" class="form-control" class="form-control"
+                name="contact_person_name" />
+
+            <label for="id_organization">Organization:</label>
+            <input type="text" id="id_organization" class="form-control" name="organization" />
+
+            <center>
+                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+            </center>
+        </form>
+    </div>
+</body>
+
+</html>

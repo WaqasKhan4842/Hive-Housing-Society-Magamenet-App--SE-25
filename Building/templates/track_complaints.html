@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaints List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .complaint {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .complaint h2 {
+            margin-top: 0;
+        }
+
+        .complaint p {
+            margin: 10px 0;
+        }
+
+        .complaint .download-link {
+            display: block;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .complaint .download-link:hover {
+            background-color: #45a049;
+        }
+
+        .button-container {
+            margin-top: 10px;
+        }
+
+        .button-container button {
+            padding: 8px 16px;
+            font-size: 14px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .button-container button.update-status {
+            background-color: #ff9933;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .button-container button.view-complaint {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Complaints List</h1>
+
+    {% if complaints %}
+        {% for complaint in complaints %}
+            <div class="complaint">
+                <h2>{{ complaint.complaint_type }}</h2>
+                {% if complaints %}
+                {% for complaint in complaints %}
+                    <div class="complaint">
+                        <h2>{{ complaint.complaint_type }}</h2>
+                        <p><strong>Description:</strong> {{ complaint.description }}</p>
+                        <p><strong>Date:</strong> {{ complaint.date }}</p>
+                        <p><strong>Time:</strong> {{ complaint.time }}</p>
+                        <p><strong>Status:</strong> {{ complaint.status }}</p>
+                        <!-- Display resident information -->
+                        <p><strong>Name:</strong> {{ complaint.resident.name }}</p>
+                        <p><strong>Apartment Number:</strong> {{ complaint.resident.apartmentNumber }}</p>
+                        <!-- Display image -->
+                        {% if complaint.image %}
+                            <img src="{{ complaint.image.url }}" alt="Complaint Image">
+                        {% endif %}
+                        <div class="button-container">
+                            <button class="update-status" >Update Status</button>
+                            <button class="view-complaint">View Complaint</button>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No complaints available.</p>
+            {% endif %}
+</body>
+</html>

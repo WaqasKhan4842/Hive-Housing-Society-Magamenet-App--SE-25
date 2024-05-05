@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css" >
+  <link href="{% static 'css/emergency_contact-styles.css' %}" type="text/css" rel="stylesheet">
+  <link href="{% static 'css/color.css' %}" type="text/css" rel="stylesheet">
+  <link href="{% static 'css/font.css' %}" type="text/css" rel="stylesheet">
+  <title>Emergency Contact Information</title>
+  <style>
+    form {
+      margin-bottom: 20px;
+    }
+
+    select {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-top-left-radius: 25px !important;
+      border-bottom-left-radius: 25px !important;
+    }
+
+    button {
+      background-color: #ff3333;
+      /* Red color for emphasis */
+      color: #fff;
+      cursor: pointer;
+      border: none;
+      /* Remove border for a cleaner look */
+    }
+
+    button:hover {
+      background-color: #cc0000;
+      /* Darker red on hover */
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      /* Add some spacing between instances */
+      border-bottom: 1px solid #ccc;
+      /* Add solid line at the bottom */
+    }
+
+    li:last-child {
+      border-bottom: none;
+      /* Remove border bottom for the last item */
+    }
+
+    li:nth-child(odd) {
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="outer-container container border pt-2 px-5 pb-4">
+    <center>
+      <h2>Select the Type of Emergency:</h2>
+    </center>
+    <form action="{% url 'display_emergency_information' %}" method="get">
+      <div class="btn-group" style="width: 100%;">
+        <select name="emergency_type" class="form-control" required style="background-color: var(--background);">
+          <option value="" disabled selected>Select an Emergency Type</option>
+          <option value="Medical">Medical</option>
+          <option value="Fire">Fire</option>
+          <option value="Police">Police</option>
+          <option value="Natural Disaster">Natural Disaster</option>
+          <option value="Accident">Accident</option>
+          <option value="Gas Leak">Gas Leak</option>
+          <option value="Security Threat">Security Threat</option>
+          <option value="Power Outage">Power Outage</option>
+          <option value="Water Leak">Water Leak</option>
+          <option value="Suspicious Activity">Suspicious Activity</option>
+        </select>
+        <button type="submit" class="btn btn-accent" style="border-top-left-radius: 0 !important; border-bottom-left-radius: 0 !important;">Search</button>
+      </div>
+    </form>
+
+    {% if emergency_contacts %}
+    <h3>Emergency Contacts:</h3>
+    <ul>
+      {% for contact in emergency_contacts %}
+      <li>
+        <p>Type: {{ contact.type }}</p>
+        <p>Contact: {{ contact.contact }}</p>
+        <p>Email: {{ contact.email }}</p>
+        <p>Contact Person Name: {{ contact.contact_person_name }}</p>
+        <p>Organization: {{ contact.organization }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No emergency contacts available.</p>
+    {% endif %}
+  </div>
+
+  <center>
+    <button class="mt-5" style="height: 50px !important;" onclick="triggerEmergencyCall()">Emergency Call</button>
+  </center>
+
+  <script>
+    function triggerEmergencyCall() {
+      // Dummy implementation for triggering an emergency call
+      alert("Emergency call triggered! This is a dummy implementation.");
+    }
+  </script>
+</body>
+
+</html>

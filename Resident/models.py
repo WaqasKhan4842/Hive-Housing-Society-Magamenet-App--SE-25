@@ -11,3 +11,5 @@ class Resident(models.Model):
     currentStatus = models.CharField(max_length=100)  # You can adjust the max_length as needed
     building = models.ForeignKey('Building.Society', on_delete=models.CASCADE)  # Foreign key association with Building
     user_name = models.ForeignKey(User, on_delete=models.CASCADE)
+    picture = models.ImageField(upload_to='resident_pictures/', null=True, blank=True)  # Picture field
+

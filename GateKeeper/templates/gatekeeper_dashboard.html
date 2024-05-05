@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gatekeeper Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css" >
+    <link href="{% static 'css/gatekeeper_dashboard-styles.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/color.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/font.css' %}" type="text/css" rel="stylesheet">
+    
+
+</head>
+<body>
+
+    <nav>
+        <div class="inner-nav">
+            <center>
+                <div class="row">
+                    <div class="col">
+                        <div class="row equal-rows">
+                            <div class="col">
+                                <a href="{% url 'logout_admin' %}">
+                                    <div class="img-container ml-2">
+                                        <img src="{% static 'pictures/logout.png' %}">
+                                    </div>
+                                    <div class="">
+                                        <p style="font-size: 12px;">
+                                            Logout
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="row equal-rows">
+                            <div class="col">
+                                <a href="{% url 'get_resident_info' %}">
+                                    <div class="img-container ml-2">
+                                        <img src="{% static 'pictures/verify_resident.png' %}">
+                                    </div>
+                                    <div class="">
+                                        <p style="font-size: 12px;">
+                                            Verify Resident
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row equal-rows">
+                            <div class="col">
+                                <a href="{% url 'display_emergency_information' %}">
+                                    <div class="img-container">
+                                        <img src="{% static 'pictures/emergency_info.png' %}">
+                                    </div>
+                                    <div class="">
+                                        <p style="font-size: 12px;">
+                                            Emergency Information
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row equal-rows">
+                            <div class="col">
+                                <a href="{% url 'enter_visitor' %}">
+                                    <div class="img-container">
+                                        <img src="{% static 'pictures/visitor_log.png' %}" style="height: 130%;">
+                                    </div>
+                                    <div class="">
+                                        <p class="mt-3" style="font-size: 12px;">
+                                            Visitors Log
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </center>
+        </div>
+    </nav>
+    
+    <div class="top-ribbon pt-2">
+        <div class="outer-container-top">
+            <center>
+                <h1>Gatekeeper Dashboard</h1>
+            </center>
+        </div>
+    </div>
+    <div class="outer-container mt-4" style="display: flex; justify-content: center;">
+        <div style="background-color: inherit;">
+            <img src="{% static 'pictures/guard.jpeg' %}" alt="Admin Icon">
+        </div>
+    </div>
+
+
+
+</body>
+</html>

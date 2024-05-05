@@ -1,0 +1,45 @@
+<!-- view_all_dues.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View All Dues</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>All Dues</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Dues Type</th>
+                    <th>Status</th>
+                    <th>Amount</th>
+                    <th>Due Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through dues data -->
+                {% for due in all_dues %}
+                <tr>
+                    <td>{{ due.dues_type }}</td>
+                    <td>{{ due.status }}</td>
+                    <td>{{ due.amount }}</td>
+                    <td>{{ due.due_date }}</td>
+                    <td>
+                        <a href="{% url 'pay_dues' due.id %}" class="btn btn-primary">Pay Due</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

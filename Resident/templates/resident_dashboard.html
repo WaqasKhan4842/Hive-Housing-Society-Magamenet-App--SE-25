@@ -1,0 +1,167 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css" >
+    <link href="{% static 'css/resident_dashboard-styles.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/color.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/font.css' %}" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var container = document.querySelector("#top-ribbon");
+        var ribbonWidth = container.offsetWidth; // Get the width of the ribbon container
+        var ribbonHeight = container.offsetHeight; // Get the height of the ribbon container
+        var numBees = 20; // Adjust the number of bees as needed
+
+        for (var i = 0; i < numBees; i++) {
+            var bee = document.createElement("div");
+            bee.classList.add("bee-icon");
+            bee.style.top = Math.random() * (ribbonHeight - 50) + "px"; // Subtract bee height
+            bee.style.left = Math.random() * (ribbonWidth - 50) + "px"; // Subtract bee width
+            container.appendChild(bee);
+        }
+
+        var headingContainer = document.createElement("div");
+        headingContainer.id = "heading-container"; // Adding an id for styling
+        headingContainer.innerHTML = "<center><h2 style='width:700px; background: var(--accent)'>Hive Housing Society</h2><h5>Resident Dashboard</h5></center>";
+        container.appendChild(headingContainer);
+    });
+
+</script>
+
+
+    <div id="top-ribbon" class="m-2">
+    </div>
+    <div class="row">
+        <div class="col-3 ">
+            <div id="left-panel" class="mt-3 ml-3">
+                <center>
+                    <div class="col mt-4">
+                        <div class="account-pic-container">
+                            <img src="https://via.placeholder.com/50" alt="Picture 1"
+                                style="height: 100%; border-radius: 50%;">
+                        </div>
+                    </div>
+                </center>
+                <div class="col pt-5">
+                    <div class="container">
+                      <div class="row">
+                        <h5 class="mr-2">Name: </h5>
+                        <label>{{ name }}</label>
+                    </div>
+                    <div class="row">
+                        <h5 class="mr-2">Contact Information: </h5>
+                        <label>{{ contact_info }}</label>
+                    </div>
+                    <div class="row">
+                        <h5 class="mr-2">Apt Number: </h5>
+                        <label>{{ apt_number }}</label>
+                    </div>
+                    <center>
+                        <div>
+                            <h4 class="mt-3">Society: </h4>
+                            <label>{{ society }}</label>
+                        </div>
+                    </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-9">
+            <div id="right-panel" class="mt-3 mr-3">
+                <div class="row" style="margin-top: 60px !important">
+                    <div class="col-4">
+                        <center>
+                            <div class="col">
+                                <a href="{% url 'view_all_dues' %}">
+                                    <div class="menu-pic-container">
+                                        <img src="{% static 'pictures/pay-dues-icon.png' %}" alt="Picture 1"
+                                            style="height: 100%; border-radius: 50%;">
+                                    </div>
+                                    <label class="pt-1">Pay Dues</label>
+                                </a>
+                            </div>
+                        </center>
+                    </div>
+                    <div class="col-4">
+                        <center>
+                            <div class="col">
+                                <a href="{% url 'society_forum' %}">
+                                    <div class="menu-pic-container">
+                                        <img src="{% static 'pictures/society-fourm-icon.png' %}" alt="Picture 1"
+                                            style="height: 100%; border-radius: 50%;">
+                                    </div>
+                                    <label class="pt-1">Society Forum</label>
+                                </a>
+                            </div>
+                        </center>
+                    </div>
+                    <div class="col-4">
+                        <center>
+                            <div class="col">
+                                <a href="{% url 'lodge_complaint' %}">
+                                    <div class="menu-pic-container">
+                                        <img src="{% static 'pictures/lodge-complaint-icon.png' %}" alt="Picture 1"
+                                            style="height: 100%; border-radius: 50%;">
+                                    </div>
+                                    <label class="pt-1">Lodge Complaint</label>
+                                </a>
+                            </div>
+                        </center>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 60px !important">
+                    <div class="col-4">
+                        <center>
+                            <div class="col">
+                                <a href="{% url 'display_emergency_information' %}">
+                                    <div class="menu-pic-container">
+                                        <img src="{% static 'pictures/emergency-info.png' %}" alt="Picture 1"
+                                            style="height: 100%; border-radius: 50%;">
+                                    </div>
+                                    <label class="pt-1">Emergency Contact</label>
+                                </a>
+                            </div>
+                        </center>
+                    </div>
+                    <div class="col-4">
+                        <center>
+                            <div class="col">
+                                <a href="{% url 'display_announcements' %}">
+                                    <div class="menu-pic-container">
+                                        <img src="{% static 'pictures/announcement-icon.png' %}" alt="Picture 1"
+                                            style="height: 100%; border-radius: 50%;">
+                                    </div>
+                                    <label class="pt-1">Announcements</label>
+                                </a>
+                            </div>
+                        </center>
+                    </div>
+                    <div class="col-4">
+                        <center>
+                            <div class="col">
+                                <a href="#">
+                                    <div class="menu-pic-container">
+                                        <img src="{% static 'pictures/reservation-icon.png' %}" alt="Picture 1"
+                                            style="height: 100%; border-radius: 50%;">
+                                    </div>
+                                    <label class="pt-1">Reservations</label>
+                                </a>
+                            </div>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

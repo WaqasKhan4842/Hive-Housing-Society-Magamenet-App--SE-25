@@ -1,0 +1,56 @@
+<!-- get_resident_info.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resident Information</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css" >
+    <link href="{% static 'css/get_resident_info-styles.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/color.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/font.css' %}" type="text/css" rel="stylesheet">
+    <style>
+        /* CSS styles remain the same */
+    </style>
+</head>
+
+<body>
+    <div class="container outer-container pt-4 px-5 pb-4">
+
+        <form action="{% url 'get_resident_info' %}" method="POST">
+            {% csrf_token %}
+            <label for="ssn">SSN Number:</label>
+            <div class="btn-group" style="width: 100%;">
+                <input type="text" id="ssn" name="ssn" placeholder="Enter SSN to Search..." required style="border-radius: 0; border-top-left-radius: 15px; border-bottom-left-radius: 15px;">
+                <button type="submit" class="mt-2 btn btn-accent">Search</button>
+            </div>
+        </form>
+
+        <!-- Display Resident Information -->
+        {% if resident %}
+        <div class="resident-info">
+            <h2>Resident Information</h2>
+            <p><strong>Name:</strong> {{ resident.name }}</p>
+            <p><strong>Contact Information:</strong> {{ resident.contactInformation }}</p>
+            <p><strong>SSN Number:</strong> {{ resident.SSN_Number }}</p>
+            <p><strong>Apartment Number:</strong> {{ resident.apartmentNumber }}</p>
+            <p><strong>Current Status:</strong> {{ resident.currentStatus }}</p>
+            <!-- Display picture if available -->
+            {% if resident.picture %}
+            <img src="{{ resident.picture.url }}" alt="Resident Picture">
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <!-- Display Error Message if resident does not exist -->
+        {% if error_message %}
+        <div class="error-message">
+            <p>{{ error_message }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

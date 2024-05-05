@@ -1,0 +1,233 @@
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Society Forum</title>
+    <!-- Include Font Awesome library -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        position: relative; /* Added position relative for the body */
+      }
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        overflow-y: auto; /* Enable vertical scrolling */
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .forum-info {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .forum-info h2 {
+        margin-top: 0;
+        margin-bottom: 10px;
+      }
+      .forum-info .member-icon {
+        color: #007bff;
+        margin-right: 5px;
+      }
+      .forum-info .member-count {
+        font-size: 14px;
+        color: #666;
+      }
+      .new-post-form {
+        border: 1px solid #ccc;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+      }
+      .new-post-form h2 {
+        margin-top: 0;
+        margin-bottom: 10px;
+      }
+      .new-post-form textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        resize: vertical;
+        margin-bottom: 10px;
+      }
+      .new-post-form button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .post {
+        border: 1px solid #ccc;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        position: relative; /* Added for positioning the heart icon */
+      }
+      .post-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .post-header h2 {
+        margin: 0;
+      }
+      .post-meta {
+        font-size: 14px;
+        color: #666;
+      }
+      .post-content {
+        font-size: 16px;
+      }
+      .post-image {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+        border-radius: 50%;
+      }
+      .heart-icon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: red;
+        cursor: pointer;
+      }
+      .heart-count {
+        position: absolute;
+        top: 12px;
+        right: 35px;
+        font-size: 14px;
+        color: #666;
+      }
+      .reply-form {
+        margin-top: 20px;
+      }
+      .reply-form textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        resize: vertical;
+      }
+      .reply-form button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Society Info -->
+      <div class="forum-info">
+        <h2>{{ society_name }}</h2>
+        <!-- Member Icon and Count -->
+        <div class="member-icon"><i class="fas fa-users"></i></div>
+        <div class="member-count">{{ resident_count }} members</div>
+      </div>
+      <!-- New Post Form -->
+      <form method="post" action="{% url 'submit_post' %}">
+        {% csrf_token %}
+        <div class="new-post-form">
+          <h2>Create a New Post</h2>
+          <textarea
+            name="content"
+            placeholder="Write your post here..."
+          ></textarea>
+          <button type="submit">Submit Post</button>
+        </div>
+      </form>
+
+      <!-- Example Post -->
+      <!-- Example Post -->
+      {% for post in society_posts %}
+      <div class="post">
+        <div class="post-header">
+          <img
+            class="post-image"
+            src="{% if post.author.profile_picture %}{{ post.author.profile_picture.url }}{% else %}example.jpg{% endif %}"
+            alt="User Image"
+          />
+          <div class="post-meta">
+            Posted by {{post.user.user_name}} | {{ post.date_posted }}
+          </div>
+          <!-- Heart Icon and Count -->
+          <div class="heart-icon">&hearts;</div>
+          <div class="heart-count">{{ post.likes }}</div>
+        </div>
+        <div class="post-content">
+          <p>{{ post.content }}</p>
+        </div>
+      
+     <!-- Reply Icon -->
+     <div class="reply-icon">
+        <i class="fas fa-reply"></i>
+    </div>
+    <!-- Reply Form and Comments -->
+    <!-- Reply Form and Comments -->
+<div class="reply-section" style="display: none;">
+    <!-- Reply Form -->
+    <div class="reply-form">
+        <h3>Write a Reply</h3>
+        <form method="post" action="{% url 'submit_comment' post.post_id %}">
+            {% csrf_token %}
+            <!-- Hidden input field for post_id -->
+            <input type="hidden" name="post_id" value="{{ post.post_id }}">
+            <textarea class="reply-textarea" name="content" placeholder="Write your reply here..."></textarea>
+            <button type="submit" class="submit-reply-button">Submit Reply</button>
+        </form>
+    </div>
+    <!-- Comments Section -->
+    <div class="comments">
+        {% for comment in post_comments.post %}
+        <div class="comment">
+            <p>{{ comment.content }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
+      {% endfor %}
+
+    <script>
+        // Get all reply icons
+        const replyIcons = document.querySelectorAll('.reply-icon');
+    
+        // Add click event listener to each reply icon
+        replyIcons.forEach(icon => {
+            icon.addEventListener('click', () => {
+                // Toggle display of reply section
+                const replySection = icon.nextElementSibling;
+                replySection.style.display = replySection.style.display === 'none' ? 'block' : 'none';
+            });
+        });
+    </script>
+  </body>
+</html>

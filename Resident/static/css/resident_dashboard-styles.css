@@ -1,0 +1,116 @@
+body{
+    background-color: var(--background);
+    color: var(--text);
+    overflow: hidden;
+}
+
+#left-block{
+    height: 100vh;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    box-shadow: 10px 0 10px rgba(0, 0, 0, 0.3);
+    background-color: var(--background);
+}
+
+#right-block{
+    height: 100vh;
+}
+
+#button-container {
+    position: relative;
+    margin-top: 15px;
+    margin-right: 15px;
+}
+
+button {
+    margin-left: 15px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #8e8325;
+    border-color: #8e8325;
+}
+
+.btn-accent {
+    color: var(--text);
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+.btn-accent:hover {
+    color: var(--text);
+    background-color: rgb(220, 206, 53);
+    border-color: rgb(220, 206, 53);
+}
+
+.box{
+    height: 300px;
+    background-color: var(--background);
+    border-radius: 20px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4); /* Adjust the values as needed */
+}
+
+input{
+    background-color: #f5f4e6 !important;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Adjust the values as needed */
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 .2rem var(--accent)
+}
+
+#top-ribbon{
+    background-color: var(--accent);
+    height: 100px;
+    border-radius: 14px;
+    position: relative;
+    border: 2px solid var(--secondary);
+}
+
+.bee-icon {
+    position: absolute;
+    width: 50px; /* adjust size as needed */
+    height: 30px; /* adjust size as needed */
+    background-image: url('../bee-img.png'); /* replace with your bee icon */
+    background-size: contain;
+    z-index: 0;
+}
+
+#left-panel{
+    background-color: var(--secondary);
+    height: calc(100vh - 150px);
+    border-radius: 15px;
+    border: 2px solid var(--accent);
+}
+
+#right-panel{
+    background-color: var(--secondary);
+    height: calc(100vh - 150px);
+    border-radius: 15px;
+    border: 2px solid var(--accent);
+}
+
+#heading-container {
+    text-align: center;
+    z-index: 1;
+    position: relative;
+}
+
+.account-pic-container{
+    height: 230px;
+}
+
+.menu-pic-container{
+    height: 170px;
+}

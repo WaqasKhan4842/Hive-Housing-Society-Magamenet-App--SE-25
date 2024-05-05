@@ -1,42 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Amenity</title>
-</head>
-<body>
+    <style>
+      body {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
     <h1>Add Amenity</h1>
-    <form method="post">
-        {% csrf_token %}
-        <label for="amenity_name">Amenity Name:</label><br>
-        <input type="text" id="amenity_name" name="amenity_name" required><br>
+    <form method="post" action="{% url 'addAmenity' %}">
+      {% csrf_token %}
+      <label for="amenity_name">Amenity Name:</label><br />
+      <input type="text" id="amenity_name" name="amenity_name" required /><br />
 
-        <label for="description">Description:</label><br>
-        <textarea id="description" name="description" required></textarea><br>
+      <label for="description">Description:</label><br />
+      <select id="description" name="description" required>
+        <option value="" selected disabled>Select Description</option>
+        <option value="Clubhouse">Clubhouse</option>
+        <option value="Community Hall">Community Hall</option>
+        <option value="Sports Facilities">Sports Facilities</option>
+        <option value="Party Terrace">Party Terrace</option>
+        <option value="BBQ Area">BBQ Area</option>
+        <option value="Function Room">Function Room</option>
+        <option value="Movie Theater">Movie Theater</option>
+        <option value="Library">Library</option></select
+      ><br />
 
-        <label for="status">Status:</label><br>
-        <input type="text" id="status" name="status" required><br>
+      <label for="status">Status:</label><br />
+      <select id="status" name="status" required>
+        <option value="" selected disabled>Select Status</option>
+        <option value="Functional">Functional</option>
+        <option value="Non-Functional">Non-Functional</option>
+        <option value="Under Maintenance">Under Maintenance</option>
+        <option value="Construction">Under Construction</option></select
+      ><br />
 
-        <label for="location">Location:</label><br>
-        <input type="text" id="location" name="location" required><br>
+      <label for="location">Location:</label><br />
+      <input type="text" id="location" name="location" required /><br />
 
-        <label for="capacity">Capacity:</label><br>
-        <input type="number" id="capacity" name="capacity" required><br>
+      <label for="capacity">Capacity:</label><br />
+      <input type="number" id="capacity" name="capacity" required /><br />
 
-        <label for="opening_hrs">Opening Hours:</label><br>
-        <input type="text" id="opening_hrs" name="opening_hrs" required><br>
+      <label for="opening_hrs">Opening Hours:</label><br />
+      <input
+        type="text"
+        id="opening_hrs"
+        name="opening_hrs"
+        placeholder="e.g., Mon-Fri: 8am-10pm, Sat-Sun: 10am-8pm"
+        required
+      /><br />
 
-        <label for="reservation_fees">Reservation Fees:</label><br>
-        <input type="number" id="reservation_fees" name="reservation_fees" step="0.01" required><br>
+      <label for="reservation_fees">Reservation Fees (in Rs):</label><br />
+      <input
+        type="number"
+        id="reservation_fees"
+        name="reservation_fees"
+        step="0.1"
+        placeholder="Enter reservation fees"
+        required
+      /><br />
 
-        <label for="maintenance">Maintenance:</label><br>
-        <textarea id="maintenance" name="maintenance" required></textarea><br>
+      <label for="availability">Availability:</label><br />
+      <input type="hidden" name="availability" value="false" />
+      <input
+        type="checkbox"
+        id="availability"
+        name="availability"
+        value="true"
+        checked
+      /><br />
 
-        <label for="availability">Availability:</label><br>
-        <input type="checkbox" id="availability" name="availability" checked><br>
-
-        <button type="submit">Submit</button>
+      <button type="submit">Submit</button>
     </form>
-</body>
+  </body>
 </html>

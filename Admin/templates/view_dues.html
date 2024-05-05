@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Dues</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css" >
+    <link href="{% static 'css/view_dues-styles.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/color.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/font.css' %}" type="text/css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="outer-container container p-5">
+        <!-- Button to add dues  -->
+        
+        <center>
+            <a href="{% url 'add_dues' apartment_number %}" class="btn btn-primary mb-3">Add Dues</a>
+            <h3>Dues for Apartment {{ apartment_number }}</h3>
+        </center>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Dues Type</th>
+                    <th>Status</th>
+                    <th>Amount</th>
+                    <th>Due Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through dues data -->
+                {% for due in dues %}
+                <tr>
+                    <td>{{ due.dues_type }}</td>
+                    <td>
+                        {% if due.status %}
+                            Paid
+                        {% else %}
+                            Pending
+                        {% endif %}
+                    </td>
+                    <td>{{ due.amount }}</td>
+                    <td>{{ due.due_date }}</td>
+                    <td>
+                        <!-- Button to update dues if status is 'pending'  -->
+                        {% if not due.status %}
+                            <a href="{% url 'update_dues' due.id %}" class="btn btn-secondary">Update</a>
+                        {% endif %}
+                        <!-- Button to delete dues   -->
+                        <a href="{% url 'delete_dues' due.id %}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

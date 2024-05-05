@@ -1,0 +1,111 @@
+body{
+    background-color: var(--background);
+    color: var(--text);
+}
+
+#left-block{
+    height: 100vh;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    box-shadow: 10px 0 10px rgba(0, 0, 0, 0.3);
+    background-color: var(--background);
+}
+
+#right-block{
+    height: 100vh;
+}
+
+#button-container {
+    position: relative;
+    margin-top: 15px;
+    margin-right: 15px;
+}
+
+button {
+    margin-left: 15px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #8e8325;
+    border-color: #8e8325;
+}
+
+.btn-accent {
+    color: var(--text);
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+.btn-accent:hover {
+    color: var(--text);
+    background-color: rgb(220, 206, 53);
+    border-color: rgb(220, 206, 53);
+}
+
+.btn-accent.focus,
+.btn-accent:focus {
+    color: var(--text);
+    background-color: rgb(203, 190, 48);
+    border-color: rgb(173, 162, 41);
+    box-shadow: 0 0 0 .2rem rgb(173, 162, 41, 0.5);
+}
+
+.btn-primary.focus,
+.btn-primary:focus {
+    color: #fff;
+    background-color: #5e5719;
+    border-color: #5e5719;
+    box-shadow: 0 0 0 .2rem rgba(94, 87, 25, .5)
+}
+
+.box{
+    height: 320px;
+    background-color: var(--background);
+    border-radius: 20px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4); /* Adjust the values as needed */
+}
+
+input{
+    background-color: #f5f4e6 !important;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Adjust the values as needed */
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 .2rem var(--accent)
+}
+
+.img-container{
+    margin-top: 10px;
+    margin-left: 60px;
+    height: 150px;
+    width:auto;
+}
+
+.img-container {
+    position: relative;
+    right: 800px;
+    top: -10px;
+    /* Add animation or transition properties here */
+    transition: all 0.3s ease; /* Example transition for smooth movement */
+    animation-name: moveBee;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+@keyframes moveBee {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(10px, -10px); }
+    100% { transform: translate(0, 0); }
+}

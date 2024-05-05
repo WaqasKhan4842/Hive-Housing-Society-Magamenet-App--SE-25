@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apartments and Dues</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css" >
+    <link href="{% static 'css/list_apartments-styles.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/color.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/font.css' %}" type="text/css" rel="stylesheet">
+
+    <style>
+        /* Style for scrollable table */
+        .scrollable-table {
+            max-height: 400px; /* Adjust the maximum height as needed */
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container outer-container p-5">
+        <center>
+            <h3>Apartments and Users</h3>
+        </center>
+        <!-- Add scrollable container for the table -->
+        <div class="scrollable-table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Apartment Number</th>
+                        <th>Users</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Loop through apartments and users data -->
+                    {% for apartment_number, users in apartment_details.items %}
+                    <tr>
+                        <td>{{ apartment_number }}</td>
+                        <td>
+                            <ul>
+                                {% for user in users %}
+                                <li>{{ user }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td>
+                            <!-- Button to view dues   -->
+                            <a style="border-radius: 19px;" href="{% url 'view_dues' apartment_number %}" class="btn btn-primary">View Dues</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,6 +1,8 @@
 from django import forms
 from Resident.models import *
 from Account.models import *
+from Building.models import *
+
 
 class ResidentRegistrationForm(forms.ModelForm):
     class Meta:
@@ -13,3 +15,13 @@ class UserRegistrationForm(forms.ModelForm):
         model = User
         fields = ['user_name', 'password']
         # You can adjust the fields as needed
+    
+class ApartmentForm(forms.ModelForm):
+    class Meta:
+        model = Apartment
+        fields = ['Apartment_number', 'Floor_Number', 'No_of_Rooms']
+
+
+
+
+

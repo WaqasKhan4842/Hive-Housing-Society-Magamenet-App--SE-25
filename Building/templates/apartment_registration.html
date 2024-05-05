@@ -1,0 +1,58 @@
+<!-- apartment_registration.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="{% static 'css/bootstrap.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/color.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/font.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'css/apartment_registration-styles.css' %}"  rel="stylesheet">
+</head>
+<body>
+    <div class="outer-container container border pt-2 px-5 pb-4">
+        <div class="">
+            <center class="">
+                <h2>Apartment Registration</h2>
+            </center>
+            <div class="mt-5">
+                <form method="post" action="{% url 'apartment_registration' %}">
+                    {% csrf_token %}
+                    <!-- Fields for apartment registration -->
+                    <div class="row">
+                        <div class="col-4">
+                            <label for="Apartment_number">Apartment Number:</label>
+                            <input class="form-control" type="number" id="Apartment_number" name="apartment_number" required style="width: 100%;">
+                        </div>
+                        <div class="col-4">
+                            <label for="Floor_Number">Floor Number:</label>
+                            <input class="form-control" type="number" id="Floor_Number" name="floor_number" required style="width: 100%;">
+                        </div>
+                        <div class="col-4">
+                            <label for="No_of_Rooms">Number of Rooms:</label>
+                            <input class="form-control" type="number" id="No_of_Rooms" name="no_of_rooms" required style="width: 100%;">
+                        </div>
+                    </div>
+
+                    {% if error_message %}
+                    <div class="row mt-3">
+                        <div class="col">
+                            <div class="alert alert-danger" role="alert">
+                                {{ error_message }}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <center class="mt-5">
+                        <input class="btn btn-primary" type="submit" value="Next">
+                    </center>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

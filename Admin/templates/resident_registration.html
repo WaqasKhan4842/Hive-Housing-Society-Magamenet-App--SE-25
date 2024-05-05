@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resident Registration</title>
+    <link rel="stylesheet" href="{% static 'CSS/bootstrap.css' %}" />
+  </head>
+  <body>
+    <div class="outer-container container border pt-2 px-5 pb-4">
+      <div class="">
+        <center class="">
+          <h2>Resident Registration</h2>
+        </center>
+        <div class="mt-5">
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-6">
+                <label for="name">Name:</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  style="width: 100%"
+                />
+              </div>
+              <div class="col-6">
+                <label for="contactInformation">Contact Information:</label>
+                <textarea
+                  class="form-control"
+                  id="contactInformation"
+                  name="contactInformation"
+                  rows="1"
+                  required
+                  style="width: 100%; resize: none"
+                ></textarea>
+                <small id="phone_help" class="form-text text-muted"
+                  >Please enter your phone number in the format
+                  XXXX-XXXXXXX.</small
+                >
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-4">
+                <label for="SSN_Number">SSN Number:</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  id="SSN_Number"
+                  name="SSN_Number"
+                  required
+                  style="width: 100%"
+                />
+              </div>
+              <div class="col-4">
+                <label for="currentStatus">Current Status:</label>
+                <select
+                  class="form-control"
+                  id="currentStatus"
+                  name="currentStatus"
+                  required
+                >
+                  <option value="occupied">Occupied</option>
+                  <option value="unoccupied">Unoccupied</option>
+                </select>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-6">
+                <label for="username">Username:</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  id="username"
+                  name="username"
+                  required
+                  style="width: 100%"
+                />
+              </div>
+              <div class="col-6">
+                <label for="password">Password:</label>
+                <input
+                  class="form-control"
+                  type="password"
+                  id="password"
+                  name="password"
+                  required
+                  style="width: 100%"
+                />
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-12">
+                <label for="picture">Picture:</label>
+                <input
+                  class="form-control"
+                  type="file"
+                  id="picture"
+                  name="picture"
+                  style="width: 100%"
+                />
+              </div>
+            </div>
+
+            {% if error_message %}
+            <div class="row mt-3">
+              <div class="col">
+                <div class="alert alert-danger" role="alert">
+                  {{ error_message }}
+                </div>
+              </div>
+            </div>
+            {% endif %}
+
+            <center class="mt-5">
+              <input class="btn btn-primary" type="submit" value="Register" />
+            </center>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
